@@ -2,35 +2,9 @@ version: '3.8'
 
 services:
   megamatic-app:
+    image: megamatic-app:latest
     networks:
       - MegaMaticNet
-    labels:
-      # Enable Traefik for this service
-      - "traefik.enable=true"
-      
-      # Router configuration
-      - "traefik.http.routers.megamatic.rule=Host(`megamatic.com.br`)"
-      - "traefik.http.routers.megamatic.entrypoints=web,websecure"
-      - "traefik.http.routers.megamatic.tls.certresolver=letsencrypt"
-      
-      # Service configuration
-      - "traefik.http.services.megamatic.loadbalancer.server.port=80"
-      
-      # Middleware for HTTPS redirect
-      - "traefik.http.middlewares.megamatic-https.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.megamatic-https.redirectscheme.permanent=true"
-      - "traefik.http.routers.megamatic-http.rule=Host(`megamatic.com.br`)"
-      - "traefik.http.routers.megamatic-http.entrypoints=web"
-      - "traefik.http.routers.megamatic-http.middlewares=megamatic-https"
-      
-      # Security headers middleware
-      - "traefik.http.middlewares.megamatic-headers.headers.browserXssFilter=true"
-      - "traefik.http.middlewares.megamatic-headers.headers.contentTypeNosniff=true"
-      - "traefik.http.middlewares.megamatic-headers.headers.forceSTSHeader=true"
-      - "traefik.http.middlewares.megamatic-headers.headers.stsIncludeSubdomains=true"
-      - "traefik.http.middlewares.megamatic-headers.headers.stsPreload=true"
-      - "traefik.http.middlewares.megamatic-headers.headers.stsSeconds=31536000"
-      - "traefik.http.routers.megamatic.middlewares=megamatic-headers"
     environment:
       - NODE_ENV=production
     healthcheck:
@@ -39,6 +13,38 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        # Enable Traefik for this service
+        - "traefik.enable=true"
+        
+        # Router configuration
+        - "traefik.http.routers.megamatic.rule=Host(`megamatic.com.br`)"
+        - "traefik.http.routers.megamatic.entrypoints=web,websecure"
+        - "traefik.http.routers.megamatic.tls.certresolver=letsencrypt"
+        
+        # Service configuration
+        - "traefik.http.services.megamatic.loadbalancer.server.port=80"
+        
+        # Middleware for HTTPS redirect
+        - "traefik.http.middlewares.megamatic-https.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.megamatic-https.redirectscheme.permanent=true"
+        - "traefik.http.routers.megamatic-http.rule=Host(`megamatic.com.br`)"
+        - "traefik.http.routers.megamatic-http.entrypoints=web"
+        - "traefik.http.routers.megamatic-http.middlewares=megamatic-https"
+        
+        # Security headers middleware
+        - "traefik.http.middlewares.megamatic-headers.headers.browserXssFilter=true"
+        - "traefik.http.middlewares.megamatic-headers.headers.contentTypeNosniff=true"
+        - "traefik.http.middlewares.megamatic-headers.headers.forceSTSHeader=true"
+        - "traefik.http.middlewares.megamatic-headers.headers.stsIncludeSubdomains=true"
+        - "traefik.http.middlewares.megamatic-headers.headers.stsPreload=true"
+        - "traefik.http.middlewares.megamatic-headers.headers.stsSeconds=31536000"
+        - "traefik.http.routers.megamatic.middlewares=megamatic-headers"
 
 networks:
   MegaMaticNet: ## Nome da rede interna
