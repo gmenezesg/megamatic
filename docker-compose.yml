@@ -4,7 +4,6 @@ services:
   megamatic-app:
     build: .
     container_name: megamatic-app
-    restart: unless-stopped
     networks:
       - MegaMaticNet
     labels:
