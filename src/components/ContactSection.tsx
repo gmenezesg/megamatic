@@ -48,13 +48,13 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Telefone",
-      content: "+55 (11) 99999-9999",
-      link: "tel:+5511999999999"
+      content: "+55 (31) 99811-7603",
+      link: "tel:+5531998117603"
     },
     {
       icon: MapPin,
       title: "Localização",
-      content: "São Paulo, SP - Brasil",
+      content: "Belo Horizonte, MG - Brasil",
       link: "#"
     }
   ];

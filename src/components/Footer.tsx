@@ -93,13 +93,13 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary" />
                 <span className="text-muted-foreground text-sm">
-                  +55 (11) 99999-9999
+                  +55 (31) 99811-7603
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-primary" />
                 <span className="text-muted-foreground text-sm">
-                  São Paulo, SP - Brasil
+                  Belo Horizonte, MG - Brasil
                 </span>
               </div>
             </div>
