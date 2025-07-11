@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   megamatic-app:
-    build: .
     networks:
       - MegaMaticNet
     environment:
@@ -14,6 +13,11 @@ services:
       retries: 3
       start_period: 40s
     deploy:
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          - NODE_ENV=production
       replicas: 1
       placement:
         constraints:
