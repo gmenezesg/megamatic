@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  megamatic-app:
-    image: megamatic/megamatic-app:latest  # Replace with your actual image name and tag
+  megamatic-site:
+    image: megamatic/megamatic-site:latest  # Replace with your actual image name and tag
     networks:
       - MegaMaticNet
     environment:
