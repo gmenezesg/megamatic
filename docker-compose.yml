@@ -34,9 +34,6 @@ services:
       - "traefik.http.middlewares.megamatic-headers.headers.stsPreload=true"
       - "traefik.http.middlewares.megamatic-headers.headers.stsSeconds=31536000"
       - "traefik.http.routers.megamatic.middlewares=megamatic-headers"
-      
-      # Portainer labels
-      - "io.portainer.accesscontrol.teams=administrators"
     environment:
       - NODE_ENV=production
     healthcheck:
