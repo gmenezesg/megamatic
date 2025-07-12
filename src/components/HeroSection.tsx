@@ -1,6 +1,7 @@
 import { ArrowRight, Bot, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-bg.jpg";
+import { ThemeToggle } from "./ThemeToggle";
 
 const HeroSection = () => {
   return (
@@ -24,6 +25,11 @@ const HeroSection = () => {
       </div>
       <div className="absolute bottom-40 left-20 float-animation" style={{ animationDelay: '2s' }}>
         <TrendingUp className="w-10 h-10 text-secondary opacity-60" />
+      </div>
+
+      {/* Theme Toggle */}
+      <div className="absolute top-8 right-8 z-20">
+        <ThemeToggle />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
